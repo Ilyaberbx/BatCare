@@ -21,11 +21,3 @@ MonoBehaviour:
       - _name: MainMenu
         _fullPath: Assets/_Core/Bundles/Scenes/MainMenu.unity
         _guid: 3a15a767f0a42aa4eb4de43e4e3c4415
-  - _stateSerializedType:
-      _fullQualifiedName: Workspace.Infrastructure.Global.States.GameplayState, Assembly-CSharp,
-        Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-    _sceneGroup:
-      _sceneReferences:
-      - _name: Gameplay
-        _fullPath: Assets/_Core/Bundles/Scenes/Gameplay.unity
-        _guid: dcfbd8de3dba70241a584d07824879c4

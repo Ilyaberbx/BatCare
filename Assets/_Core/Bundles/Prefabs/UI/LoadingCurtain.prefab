@@ -204,9 +204,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b19a15177e4847c6b22d597761e9dbbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _hideDuration: 1
   _canvasGroup: {fileID: 4629197887994372409}
   _image: {fileID: 1569073830092960300}
+  _onShowActions:
+  - rid: 7099747848780513285
+  _onHideActions:
+  - rid: 7099747848780513286
+  references:
+    version: 2
+    RefIds:
+    - rid: 7099747848780513285
+      type: {class: ToggleCanvasGroup, ns: Workspace.Core.Actions.Implementations.Visual, asm: Assembly-CSharp}
+      data:
+        _ease: 0
+        _duration: 0.5
+        _canvasGroup: {fileID: 4629197887994372409}
+        _isActive: 1
+    - rid: 7099747848780513286
+      type: {class: ToggleCanvasGroup, ns: Workspace.Core.Actions.Implementations.Visual, asm: Assembly-CSharp}
+      data:
+        _ease: 0
+        _duration: 0.5
+        _canvasGroup: {fileID: 4629197887994372409}
+        _isActive: 0
 --- !u!1 &5519079310569346920
 GameObject:
   m_ObjectHideFlags: 0

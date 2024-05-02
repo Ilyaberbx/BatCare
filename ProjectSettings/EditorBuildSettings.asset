@@ -10,9 +10,6 @@ EditorBuildSettings:
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
     path: Assets/_Core/Bundles/Scenes/MainMenu.unity
-    guid: 3a15a767f0a42aa4eb4de43e4e3c4415
-  - enabled: 1
-    path: Assets/_Core/Bundles/Scenes/Gameplay.unity
     guid: dcfbd8de3dba70241a584d07824879c4
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 867e7ce4d7dde1440be51240324a7d0d, type: 2}
