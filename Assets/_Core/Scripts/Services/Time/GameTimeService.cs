@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Better.Commons.Runtime.DataStructures.Properties;
 using Better.Locators.Runtime;
 using Better.Services.Runtime;
 using UnityEngine;
@@ -19,12 +20,12 @@ namespace Workspace.Services.Time
 
         private RealtimeService _realtimeService;
         private UserService _userService;
-        private DateTime _time;
-
-        public DateTime Time => _time;
+        
+        public ReactiveProperty<DateTime> TimeProperty;
 
         protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
+            TimeProperty = new();
             return Task.CompletedTask;
         }
 
@@ -33,16 +34,16 @@ namespace Workspace.Services.Time
             _realtimeService = ServiceLocator.Get<RealtimeService>();
             _userService = ServiceLocator.Get<UserService>();
             
-            _time = LoadTime();
+            TimeProperty.Value = LoadTime();
             
             return Task.CompletedTask;
         }
 
         private void Update()
         {
-            _time = _time.AddSeconds(UnityEngine.Time.deltaTime * _timeMultiplier);
+            TimeProperty.Value = TimeProperty.Value.AddSeconds(UnityEngine.Time.deltaTime * _timeMultiplier);
             
-            _userService.GameLastSession.Value = _time.ToData();
+            _userService.GameLastSession.Value = TimeProperty.Value.ToData();
         }
         
 
