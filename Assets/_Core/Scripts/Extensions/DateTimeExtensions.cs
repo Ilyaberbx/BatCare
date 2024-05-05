@@ -26,5 +26,10 @@ namespace Workspace.Extensions
                 Value = dateTime.ToString()
             };
         }
+        
+        public static DateTime ToDateTime(this TimeData data)
+        {
+            return DateTime.Parse(data.Value);
+        }
     }
 }

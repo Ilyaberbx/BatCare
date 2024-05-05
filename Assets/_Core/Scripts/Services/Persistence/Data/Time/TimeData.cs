@@ -6,5 +6,7 @@ namespace Workspace.Services.Persistence.Data.Time
     public class TimeData
     {
         public string Value;
+
+        public bool IsEmpty() => string.IsNullOrEmpty(Value);
     }
 }

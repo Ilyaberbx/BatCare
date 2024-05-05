@@ -9,5 +9,11 @@ namespace Workspace.Editor.Progress
         {
             ProgressUtility.Clear();
         }
+        
+        [MenuItem(EditorPaths.ProgressPath + "Open In Explorer")]
+        private static void OpenProgressFolder()
+        {
+            ProgressUtility.OpenProgressFolder();
+        }
     }
 }

@@ -9,18 +9,21 @@ namespace Workspace.Services.Persistence
 {
     public class UserService : PocoService<UserServiceSettings>
     {
-        public SavesProperty<TimeData> PreviousSessionEnd { get; private set; }
-        public SavesProperty<InGameSettingsData> InGameSettingsProperty { get; private set; }
+        public SavesProperty<TimeData> RealLastSession { get; private set; }
+        public SavesProperty<TimeData> GameLastSession { get; private set; }
+        public SavesProperty<InGameSettingsData> GameSettingsProperty { get; private set; }
         
         protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
+            RealLastSession = new("RealTimeLastSession", new TimeData());
+            GameLastSession = new("GameTimeLastSession", new TimeData());
+            GameSettingsProperty = new(nameof(InGameSettingsData), Settings.InGameInGameSettings);
+            
             return Task.CompletedTask;
         }
 
         protected override Task OnPostInitializeAsync(CancellationToken cancellationToken)
         {
-            PreviousSessionEnd = new(nameof(TimeData), new TimeData());
-            InGameSettingsProperty = new(nameof(InGameSettingsData), Settings.InGameInGameSettings);
             return Task.CompletedTask;
         }
     }
