@@ -168,6 +168,7 @@ MonoBehaviour:
         - rid: 2284614336079200278
         - rid: 7099747848780513284
         - rid: 7099747916194775049
+        - rid: 7099747938582659072
     - rid: 2284614336079200278
       type: {class: SavesService, ns: Better.Saves.Runtime, asm: BetterSaves.Runtime}
       data: 
@@ -200,6 +201,10 @@ MonoBehaviour:
       type: {class: GlobalService, ns: Workspace.Services.App.Implementations.Global, asm: Assembly-CSharp}
       data:
         _settings: {fileID: 11400000, guid: ffdfc42629ab47e45a2190cd909637d7, type: 2}
+    - rid: 7099747938582659072
+      type: {class: TimeOfDayService, ns: Workspace.Services.Time, asm: Assembly-CSharp}
+      data:
+        _settings: {fileID: 11400000, guid: e9fb5d44fd77ef14db43c3e8500b4fab, type: 2}
 --- !u!224 &489210551
 RectTransform:
   m_ObjectHideFlags: 0
@@ -400,8 +405,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _timeMultiplier: 4
-  _sunriseHour: 6
-  _sunsetHour: 18
 --- !u!1 &1683735316617183332
 GameObject:
   m_ObjectHideFlags: 0

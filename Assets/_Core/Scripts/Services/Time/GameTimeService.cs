@@ -15,8 +15,6 @@ namespace Workspace.Services.Time
         private bool IsFirstSession => _userService.GameLastSession.Value.IsEmpty();
 
         [SerializeField, Min(0.1f)] private float _timeMultiplier;
-        [SerializeField] private float _sunriseHour;
-        [SerializeField] private float _sunsetHour;
 
         private RealtimeService _realtimeService;
         private UserService _userService;
