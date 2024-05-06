@@ -2,17 +2,15 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
-using Better.Locators.Runtime;
 using Better.Services.Runtime;
-using Workspace.Services.Pause;
+using Workspace.Utilities;
 
 namespace Workspace.Services.Tick
 {
     public class TickService : MonoService
     {
         private readonly List<ITickable> _tickables = new List<ITickable>();
-        private PauseService _pauseService;
-
+    
         protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
             return Task.CompletedTask;
@@ -20,8 +18,6 @@ namespace Workspace.Services.Tick
 
         protected override Task OnPostInitializeAsync(CancellationToken cancellationToken)
         {
-            _pauseService = ServiceLocator.Get<PauseService>();
-
             return Task.CompletedTask;
         }
 
@@ -43,7 +39,7 @@ namespace Workspace.Services.Tick
 
         private void Update()
         {
-            if (_pauseService.IsPaused)
+            if (PauseUtility.IsPaused())
                 return;
             
             if (_tickables.IsEmpty())
