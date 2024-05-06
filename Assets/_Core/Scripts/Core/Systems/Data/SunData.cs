@@ -6,11 +6,13 @@ namespace Workspace.Core.Systems.Data
     [Serializable]
     public class SunData
     {
-        [SerializeField] private float _intensity;
-        [SerializeField] private Light _light;
+        [SerializeField] private float _maxIntensity;
+        [SerializeField] private Light _mainLight;
 
-        public Light Light => _light;
+        public Light MainLight => _mainLight;
 
-        public float Intensity => _intensity;
+        public float MaxIntensity => _maxIntensity;
+
+        public Transform Transform => _mainLight.transform;
     }
 }
