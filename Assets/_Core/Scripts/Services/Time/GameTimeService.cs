@@ -7,10 +7,13 @@ using Better.Services.Runtime;
 using UnityEngine;
 using Workspace.Extensions;
 using Workspace.Services.Persistence;
+using Workspace.Services.Tick;
+using Workspace.Utilities;
 
 namespace Workspace.Services.Time
 {
-    public class GameTimeService : MonoService
+    [Serializable]
+    public class GameTimeService : PocoService, ITickable
     {
         private bool IsFirstSession => _userService.GameLastSession.Value.IsEmpty();
 
@@ -18,8 +21,10 @@ namespace Workspace.Services.Time
 
         private RealtimeService _realtimeService;
         private UserService _userService;
-        
-        public ReactiveProperty<DateTime> TimeProperty;
+
+        public ReactiveProperty<DateTime> TimeProperty { get; private set; }
+
+        public bool TickOnPause { get; }
 
         protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
@@ -32,19 +37,21 @@ namespace Workspace.Services.Time
             _realtimeService = ServiceLocator.Get<RealtimeService>();
             _userService = ServiceLocator.Get<UserService>();
             
+            UpdatesUtility.Subscribe(this);
+            
             TimeProperty.Value = LoadTime();
             
             return Task.CompletedTask;
         }
 
-        private void Update()
+        public void Tick(float deltaTime)
         {
-            TimeProperty.Value = TimeProperty.Value.AddSeconds(UnityEngine.Time.deltaTime * _timeMultiplier);
+            TimeProperty.Value = TimeProperty.Value.AddSeconds(deltaTime * _timeMultiplier);
             
             _userService.GameLastSession.Value = TimeProperty.Value.ToData();
         }
         
-
+        
         private DateTime LoadTime()
         {
             if (IsFirstSession)

@@ -7,21 +7,23 @@ using Better.Services.Runtime;
 using Workspace.Extensions;
 using Workspace.Services.Persistence;
 using Workspace.Services.Persistence.Data.Time;
+using Workspace.Services.Tick;
+using Workspace.Utilities;
 
 namespace Workspace.Services.Time
 {
-    public class RealtimeService : MonoService
+    public class RealtimeService : PocoService, ITickable
     {
-        public DateTime Realtime => _startTime.AddSeconds(UnityEngine.Time.realtimeSinceStartup);
-        private bool IsFirstSession => RealtimeProperty.Value.IsEmpty();
-        private SavesProperty<TimeData> RealtimeProperty => _userService.RealLastSession;
-
         private UserService _userService;
 
         private DateTime _lastSessionEnd;
 
         private DateTime _startTime;
-
+        public bool TickOnPause => true;
+        public DateTime Realtime => _startTime.AddSeconds(UnityEngine.Time.realtimeSinceStartup);
+        private bool IsFirstSession => RealtimeProperty.Value.IsEmpty();
+        private SavesProperty<TimeData> RealtimeProperty => _userService.RealLastSession;
+        
         protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
             return Task.CompletedTask;
@@ -30,8 +32,10 @@ namespace Workspace.Services.Time
         protected override async Task OnPostInitializeAsync(CancellationToken cancellationToken)
         {
             _userService = ServiceLocator.Get<UserService>();
-
+            
             await LoadTime();
+            
+            UpdatesUtility.Subscribe(this);
             
             if (!IsFirstSession)
             {
@@ -39,15 +43,11 @@ namespace Workspace.Services.Time
             }
         }
 
-        protected override async void OnDestroy()
+        public void Tick(float deltaTime)
         {
-            base.OnDestroy();
-
-            await LoadTime();
-
-            RealtimeProperty.Value = _startTime.ToData();
+            RealtimeProperty.Value = Realtime.ToData();
         }
-
+        
         public bool TryGetOfflineSpan(out TimeSpan offlineSpan)
         {
             offlineSpan = default;
@@ -63,6 +63,7 @@ namespace Workspace.Services.Time
         }
 
         // TODO: Internet check
+
         private Task LoadTime()
         {
             _startTime = DateTime.Now;
