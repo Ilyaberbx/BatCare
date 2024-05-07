@@ -54,11 +54,5 @@ namespace Workspace.Services.Tick
                 tickable.FixedTick(UnityEngine.Time.fixedDeltaTime);
             }
         }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            _fixedTickables.Clear();
-        }
     }
 }

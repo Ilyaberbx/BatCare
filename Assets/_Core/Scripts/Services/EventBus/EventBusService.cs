@@ -5,6 +5,7 @@ using Workspace.Services.EventBus.Abstractions;
 
 namespace Workspace.Services.EventBus
 {
+    // TODO: Remake using Callback With Priority
     public class EventBusService : PocoService, IEventBus
     {
         private IEventBus _internalEventBus;

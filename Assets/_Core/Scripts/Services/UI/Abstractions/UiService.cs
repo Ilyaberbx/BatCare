@@ -11,20 +11,15 @@ using Object = UnityEngine.Object;
 namespace Workspace.Services.UI.Abstractions
 {
     [Serializable]
+    // TODO: Total refactoring
     public abstract class UiService : PocoService<UIСonfig>
     {
         [SerializeField] private Transform _root;
         private BasePresenter _currentPresenter;
 
-        protected override Task OnInitializeAsync(CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
-        }
+        protected override Task OnInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 
-        protected override Task OnPostInitializeAsync(CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
-        }
+        protected override Task OnPostInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 
         public async Task<TPresenter> Open<TPresenter, TModel>(TModel model)
             where TPresenter : BasePresenter<TModel>
@@ -37,10 +32,12 @@ namespace Workspace.Services.UI.Abstractions
 
             if (data == null)
             {
-                throw new NullReferenceException();
+                Debug.LogException(new NullReferenceException());
+
+                return null;
             }
             
-            var presenter = await AssetsServiceUtility.Create<TPresenter>(data.Reference, _root);
+            var presenter = await AssetsUtility.Create<TPresenter>(data.Reference, _root);
             
             presenter.SetDerivedModel(model);
 

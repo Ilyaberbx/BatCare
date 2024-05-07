@@ -1,9 +1,10 @@
-using System;
+ using System;
 using UnityEngine;
 using Workspace.UI.Widgets.Abstractions;
 
 namespace Workspace.UI.Widgets
 {
+    //TODO: Remake using ILocator
     public class WidgetsSystem : MonoBehaviour
     {
         [SerializeField] private BaseWidget[] _widgets;

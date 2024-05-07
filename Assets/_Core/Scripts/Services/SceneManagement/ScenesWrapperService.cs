@@ -12,6 +12,7 @@ using Workspace.Services.SceneManagement.Data;
 
 namespace Workspace.Services.SceneManagement
 {
+    //TODO: Remake using event bus approach
     public class ScenesWrapperService : PocoService, ISceneSystem
     {
         [SerializeField] private LoadingCurtain _curtain;

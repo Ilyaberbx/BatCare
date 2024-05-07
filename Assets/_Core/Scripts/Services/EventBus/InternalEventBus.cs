@@ -8,6 +8,7 @@ namespace Workspace.Services.EventBus
     internal class InternalEventBus : IEventBus
     {
         private readonly Dictionary<Type, List<IEventListener>> _listenersByType = new();
+        private readonly Dictionary<Type, List<IPriorityEventListener>> _priorityListenersByType = new();
 
         #region Subscribe and Unsubscribe
         

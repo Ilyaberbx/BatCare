@@ -2,7 +2,6 @@ using System.Threading;
 using Better.Attributes.Runtime.Select;
 using UnityEngine;
 using Workspace.Core.Actions.Abstractions;
-using Workspace.Core.Actions.Implementations.Visual;
 
 namespace Workspace.UI.Essentials
 {
@@ -25,7 +24,7 @@ namespace Workspace.UI.Essentials
 
         private void OnDisable()
         {
-            _tokenSource.Cancel();
+            _tokenSource?.Cancel();
         }
     }
 }

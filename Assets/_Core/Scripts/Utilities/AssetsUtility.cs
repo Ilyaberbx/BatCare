@@ -6,7 +6,7 @@ using Workspace.Services.Assets;
 
 namespace Workspace.Utilities
 {
-    public static class AssetsServiceUtility
+    public static class AssetsUtility
     {
         private static ServiceProperty<AssetsService> _assetsProperty;
         

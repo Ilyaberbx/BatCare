@@ -54,11 +54,5 @@ namespace Workspace.Services.Tick
                 tickable.Tick(UnityEngine.Time.deltaTime);
             }
         }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            _tickables.Clear();
-        }
     }
 }
