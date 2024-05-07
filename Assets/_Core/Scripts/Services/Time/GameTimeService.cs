@@ -8,23 +8,20 @@ using UnityEngine;
 using Workspace.Extensions;
 using Workspace.Services.Persistence;
 using Workspace.Services.Tick;
-using Workspace.Utilities;
 
 namespace Workspace.Services.Time
 {
     [Serializable]
     public class GameTimeService : PocoService, ITickable
     {
-        private bool IsFirstSession => _userService.GameLastSession.Value.IsEmpty();
-
         [SerializeField, Min(0.1f)] private float _timeMultiplier;
 
         private RealtimeService _realtimeService;
         private UserService _userService;
 
         public ReactiveProperty<DateTime> TimeProperty { get; private set; }
-
-        public bool TickOnPause { get; }
+        private bool IsFirstSession => _userService.GameLastSession.Value.IsEmpty();
+        public bool TickOnPause => true;
 
         protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
@@ -37,7 +34,7 @@ namespace Workspace.Services.Time
             _realtimeService = ServiceLocator.Get<RealtimeService>();
             _userService = ServiceLocator.Get<UserService>();
             
-            UpdatesUtility.Subscribe(this);
+            ServiceLocator.Get<TickService>().Subscribe(this);
             
             TimeProperty.Value = LoadTime();
             

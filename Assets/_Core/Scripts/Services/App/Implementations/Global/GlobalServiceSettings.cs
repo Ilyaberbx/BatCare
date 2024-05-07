@@ -14,6 +14,7 @@ namespace Workspace.Services.App.Implementations.Global
         public SceneGroup GetSceneGroup<TState>() where TState : GlobalState
         {
             var pair = _groupStatePairs.FirstOrDefault(pair => pair.StateType == typeof(TState));
+            
             return pair?.Group;
         }
     }

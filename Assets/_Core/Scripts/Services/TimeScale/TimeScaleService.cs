@@ -2,9 +2,9 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Better.Commons.Runtime.DataStructures.Properties;
+using Better.Locators.Runtime;
 using Better.Services.Runtime;
 using Workspace.Services.Pause;
-using Workspace.Utilities;
 
 namespace Workspace.Services.TimeScale
 {
@@ -12,6 +12,7 @@ namespace Workspace.Services.TimeScale
     public class TimeScaleService : PocoService, IPauseListener
     {
         private ReactiveProperty<float> _timeScaleProperty;
+        private PauseService _pauseService;
         public float TimeScale => _timeScaleProperty.Value;
 
         protected override Task OnInitializeAsync(CancellationToken cancellationToken)
@@ -21,7 +22,10 @@ namespace Workspace.Services.TimeScale
         }
         protected override Task OnPostInitializeAsync(CancellationToken cancellationToken)
         {
-            PauseUtility.Subscribe(this);
+            _pauseService = ServiceLocator.Get<PauseService>();
+            
+            _pauseService.Subscribe(this);
+            
             return Task.CompletedTask;
         }
         public void Subscribe(Action<float> action) => _timeScaleProperty.Subscribe(action);

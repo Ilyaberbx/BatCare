@@ -8,7 +8,6 @@ using Workspace.Extensions;
 using Workspace.Services.Persistence;
 using Workspace.Services.Persistence.Data.Time;
 using Workspace.Services.Tick;
-using Workspace.Utilities;
 
 namespace Workspace.Services.Time
 {
@@ -19,8 +18,8 @@ namespace Workspace.Services.Time
         private DateTime _lastSessionEnd;
 
         private DateTime _startTime;
-        public bool TickOnPause => true;
         public DateTime Realtime => _startTime.AddSeconds(UnityEngine.Time.realtimeSinceStartup);
+        public bool TickOnPause => true;
         private bool IsFirstSession => RealtimeProperty.Value.IsEmpty();
         private SavesProperty<TimeData> RealtimeProperty => _userService.RealLastSession;
         
@@ -35,7 +34,7 @@ namespace Workspace.Services.Time
             
             await LoadTime();
             
-            UpdatesUtility.Subscribe(this);
+            ServiceLocator.Get<TickService>().Subscribe(this);
             
             if (!IsFirstSession)
             {

@@ -9,19 +9,17 @@ namespace Workspace.Services.Time
     public class TimeOfDayService : PocoService<TimeOfDaySettings>
     {
         private GameTimeService _gameTimeService;
-        private TimeSpan _sunsetSpan;
-        private TimeSpan _sunriseSpan;
 
         public DateTime GameTime => _gameTimeService.TimeProperty.Value;
 
-        public TimeSpan SunsetSpan => _sunsetSpan;
+        public TimeSpan SunsetSpan { get; private set; }
 
-        public TimeSpan SunriseSpan => _sunriseSpan;
+        public TimeSpan SunriseSpan { get; private set; }
 
         protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            _sunsetSpan = TimeSpan.FromHours(Settings.SunsetHour);
-            _sunriseSpan = TimeSpan.FromHours(Settings.SunriseHour);
+            SunsetSpan = TimeSpan.FromHours(Settings.SunsetHour);
+            SunriseSpan = TimeSpan.FromHours(Settings.SunriseHour);
             
             return Task.CompletedTask;
         }

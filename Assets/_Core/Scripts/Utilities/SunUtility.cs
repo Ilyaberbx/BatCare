@@ -9,9 +9,7 @@ namespace Workspace.Utilities
     public static class SunUtility
     {
         private static readonly ServiceProperty<TimeOfDayService> _timeOfDayServiceProperty = new();
-
         private static TimeOfDayService TimeOfDayService => _timeOfDayServiceProperty.CachedService;
-
         private static TimeSpan SunriseTime => TimeOfDayService.SunriseSpan;
         private static TimeSpan SunsetTime => TimeOfDayService.SunsetSpan;
         private static TimeSpan CurrentTime => TimeOfDayService.GameTime.TimeOfDay;
