@@ -11,7 +11,6 @@ using Object = UnityEngine.Object;
 namespace Workspace.Services.UI.Abstractions
 {
     [Serializable]
-    // TODO: Total refactoring
     public abstract class UiService : PocoService<UIСonfig>
     {
         [SerializeField] private Transform _root;

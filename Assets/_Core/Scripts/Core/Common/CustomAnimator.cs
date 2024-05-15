@@ -5,7 +5,7 @@ using Workspace.Services.TimeScale;
 namespace Workspace.Core.Common
 {
     [RequireComponent(typeof(Animator))]
-    public class CustomAnimator : MonoBehaviour
+    public abstract class CustomAnimator : MonoBehaviour
     {
         private TimeScaleService _timeScaleService;
         private Animator _animator;

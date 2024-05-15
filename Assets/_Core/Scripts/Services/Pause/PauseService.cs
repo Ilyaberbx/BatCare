@@ -1,51 +1,31 @@
-using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using Better.Commons.Runtime.Extensions;
 using Better.Services.Runtime;
 
 namespace Workspace.Services.Pause
 {
-    public class PauseService : PocoService
+    public class PauseService : PocoService, IPauseSystem
     {
-        private List<IPauseListener> _pauseListeners;
-        public bool IsPaused { get; private set; }
+        private PauseSystem _pauseSystem;
+
+        public bool IsPaused => _pauseSystem.IsPaused;
 
         protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            _pauseListeners = new();
+            _pauseSystem = new PauseSystem();
             return Task.CompletedTask;
         }
 
-        protected override Task OnPostInitializeAsync(CancellationToken cancellationToken)
-        {
-            return Task.CompletedTask;
-        }
+        protected override Task OnPostInitializeAsync(CancellationToken cancellationToken) => Task.CompletedTask;
 
-        public void Subscribe(IPauseListener listener)
-        {
-            _pauseListeners.Add(listener);
-        }
+        #region IPauseSystem
 
-        public void Unsubscribe(IPauseListener listener)
-        {
-            if (_pauseListeners.IsEmpty())
-                return;
+        public void Subscribe(IPauseListener listener) => _pauseSystem.Subscribe(listener);
 
-            if (_pauseListeners.Contains(listener))
-            {
-                _pauseListeners.Remove(listener);
-            }
-        }
-        
-        public void Pause(bool value)
-        {
-            IsPaused = value;
+        public void Unsubscribe(IPauseListener listener) => _pauseSystem.Unsubscribe(listener);
 
-            foreach (var listener in _pauseListeners)
-            {
-                listener.OnPaused(value);
-            }
-        }
+        public void Pause(bool value) => _pauseSystem.Pause(value);
+
+        #endregion
     }
 }

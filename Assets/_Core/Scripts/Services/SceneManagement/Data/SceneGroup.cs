@@ -1,15 +1,16 @@
 using System;
 using Better.SceneManagement.Runtime;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Workspace.Services.SceneManagement.Data
 {
     [Serializable]
     public class SceneGroup
     {
-        [SerializeField] private SceneReference[] _sceneReferences;
+        [FormerlySerializedAs("_sceneReferences")] [SerializeField] private SceneReference[] references;
         
-        public SceneReference[] SceneReferences => _sceneReferences;
+        public SceneReference[] References => references;
     }
     
 }

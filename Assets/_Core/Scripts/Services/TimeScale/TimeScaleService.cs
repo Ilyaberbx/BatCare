@@ -8,7 +8,6 @@ using Workspace.Services.Pause;
 
 namespace Workspace.Services.TimeScale
 {
-    // TODO: Remake subscribers using event bus
     public class TimeScaleService : PocoService, IPauseListener
     {
         private ReactiveProperty<float> _timeScaleProperty;
