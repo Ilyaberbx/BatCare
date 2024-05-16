@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using Better.Commons.Runtime.Utility;
 using Better.Services.Runtime;
 using UnityEngine;
 using Workspace.Core.MVP.Abstractions;
@@ -31,8 +32,7 @@ namespace Workspace.Services.UI.Abstractions
 
             if (data == null)
             {
-                Debug.LogException(new NullReferenceException());
-
+                DebugUtility.LogException<NullReferenceException>();
                 return null;
             }
             

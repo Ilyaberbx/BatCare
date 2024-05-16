@@ -1,15 +1,15 @@
  using System;
 using UnityEngine;
+using Workspace.Core.Systems;
 using Workspace.UI.Widgets.Abstractions;
 
 namespace Workspace.UI.Widgets
 {
-    //TODO: Remake using ILocator
-    public class WidgetsSystem : MonoBehaviour
+    public class WidgetsSystem : MonoBehaviour, ISystem
     {
         [SerializeField] private BaseWidget[] _widgets;
 
-        public void Initialize(WidgetsDataContainer dataContainer)
+        public void SetData(WidgetsDataContainer dataContainer)
         {
             var dataMap = dataContainer.DataMap;
 

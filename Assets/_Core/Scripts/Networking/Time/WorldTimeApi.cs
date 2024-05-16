@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Proyecto26;
 using Workspace.Extensions;
-using Workspace.Services.Persistence.Data.Time;
+using Workspace.Services.Persistence.Data;
 
 namespace Workspace.Networking.Time
 {

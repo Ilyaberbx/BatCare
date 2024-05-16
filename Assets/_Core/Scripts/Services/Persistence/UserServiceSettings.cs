@@ -1,13 +1,14 @@
 using UnityEngine;
-using Workspace.Services.Persistence.Data.Settings;
+using UnityEngine.Serialization;
+using Workspace.Services.Persistence.Data;
 
 namespace Workspace.Services.Persistence
 {
     [CreateAssetMenu(fileName = "User Service Settings", menuName = "Configs/Services/User", order = 0)]
     public class UserServiceSettings : ScriptableObject
     {
-        [SerializeField] private InGameSettingsData _inGameSettingsData;
+        [FormerlySerializedAs("_inGameSettingsData")] [SerializeField] private SettingsData settingsData;
 
-        public InGameSettingsData InGameInGameSettings => _inGameSettingsData;
+        public SettingsData Settings => settingsData;
     }
 }

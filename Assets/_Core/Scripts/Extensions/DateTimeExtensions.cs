@@ -1,6 +1,6 @@
 using System;
 using System.Text.RegularExpressions;
-using Workspace.Services.Persistence.Data.Time;
+using Workspace.Services.Persistence.Data;
 
 namespace Workspace.Extensions
 {

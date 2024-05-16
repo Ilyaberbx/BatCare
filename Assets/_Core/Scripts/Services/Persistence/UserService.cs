@@ -1,30 +1,28 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Better.Commons.Runtime.DataStructures.SerializedTypes;
 using Better.Saves.Runtime.Data;
 using Better.Services.Runtime;
-using Workspace.Services.Persistence.Data.Settings;
-using Workspace.Services.Persistence.Data.Time;
+using Workspace.Services.Persistence.Data;
 
 namespace Workspace.Services.Persistence
 {
     public class UserService : PocoService<UserServiceSettings>
     {
-        private const string RealtimeLastSessionKey = "RealTimeLastSession";
-        private const string GametimeLastSessionKey = "GameTimeLastSession";
-        private const string WallpapersKey = "WallpapersData";
+        private const string RealtimeLastSessionKey = "Real Time Last Session";
+        private const string GametimeLastSessionKey = "Game Time Last Session";
+        private const string CurrentLocationKey = "Current Locatio nData";
         public SavesProperty<TimeData> RealLastSession { get; private set; }
         public SavesProperty<TimeData> GameLastSession { get; private set; }
-        public SavesProperty<InGameSettingsData> GameSettingsProperty { get; private set; }
-        public SavesProperty<SerializedDictionary<int, int>> WallpapersMapProperty { get; private set; }
+        public SavesProperty<SettingsData> SettingsProperty { get; private set; }
+        public SavesProperty<LocationData> CurrentLocationProperty { get; private set; }
         
         protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
             RealLastSession = new(RealtimeLastSessionKey, new TimeData());
             GameLastSession = new(GametimeLastSessionKey, new TimeData());
-            GameSettingsProperty = new(nameof(InGameSettingsData), Settings.InGameInGameSettings);
-            WallpapersMapProperty = new(WallpapersKey, new SerializedDictionary<int, int>());
-            
+            CurrentLocationProperty = new(CurrentLocationKey, new LocationData(0));
+            SettingsProperty = new(nameof(SettingsData), Settings.Settings);
+
             return Task.CompletedTask;
         }
 
