@@ -14,13 +14,15 @@ namespace Workspace.Services.Persistence
         public SavesProperty<TimeData> RealLastSession { get; private set; }
         public SavesProperty<TimeData> GameLastSession { get; private set; }
         public SavesProperty<SettingsData> SettingsProperty { get; private set; }
-        public SavesProperty<LocationData> CurrentLocationProperty { get; private set; }
+        public SavesProperty<int> CurrentRoomIndexProperty { get; private set; }
+
+        public SavesProperty<WallpapersData> WallpapersProperty { get; private set; }
         
         protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
             RealLastSession = new(RealtimeLastSessionKey, new TimeData());
             GameLastSession = new(GametimeLastSessionKey, new TimeData());
-            CurrentLocationProperty = new(CurrentLocationKey, new LocationData(0));
+            CurrentRoomIndexProperty = new(CurrentLocationKey, 0);
             SettingsProperty = new(nameof(SettingsData), Settings.Settings);
 
             return Task.CompletedTask;

@@ -21,5 +21,13 @@ namespace Workspace.Core.Systems.Room.Interior
                 }
             }
         }
+
+        public void Rebuild()
+        {
+            foreach (var element in _interiorElements)
+            {
+                element.Rebuild();
+            }
+        }
     }
 }
