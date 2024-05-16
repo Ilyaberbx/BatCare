@@ -39,6 +39,8 @@ namespace Workspace.Services.Location.Implementations
                 await Exit(token);
 
                 _currentLocation = location;
+
+                await _currentLocation.Enter(token);
             }
             else
             {

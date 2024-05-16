@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using Workspace.Core.Common;
+using Workspace.Core.Common.Data;
 using Workspace.Core.Systems.Room.Interior.Abstractions;
 
 namespace Workspace.Core.Systems.Room.Interior

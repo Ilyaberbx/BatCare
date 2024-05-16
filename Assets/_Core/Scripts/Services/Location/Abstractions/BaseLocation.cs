@@ -6,6 +6,7 @@ namespace Workspace.Services.Location.Abstractions
 {
     public abstract class BaseLocation : MonoBehaviour
     {
+        public abstract Task Enter(CancellationToken token);
         public abstract Task Exit(CancellationToken token);
     }
 }

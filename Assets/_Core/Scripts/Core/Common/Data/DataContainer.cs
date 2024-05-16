@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Workspace.Core.Common
+namespace Workspace.Core.Common.Data
 {
     public class DataContainer<TDerivedElement> : IDataContainer<TDerivedElement>
     {

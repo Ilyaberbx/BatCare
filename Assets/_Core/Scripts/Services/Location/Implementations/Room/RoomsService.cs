@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Better.Services.Runtime;
@@ -8,29 +9,27 @@ namespace Workspace.Services.Location.Implementations.Room
 {
     public class RoomsService : PocoService<RoomsSettings>, ILocationSystem<Room>
     {
-        public Task Enter<TLocation>(CancellationToken token) where TLocation : Room
+        private ILocationSystem<Room> _internalLocationSystem;
+
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            throw new NotImplementedException();
+            await base.OnInitializeAsync(cancellationToken);
+
+            _internalLocationSystem = new InternalLocationSystem<Room>(Settings.Data.ToDictionary(data => data.Type, data => data.Reference));
         }
 
-        public Task Enter(Type type, CancellationToken token)
-        {
-            throw new NotImplementedException();
-        }
+        #region ILocationSystem
 
-        public void Enter<TLocation>() where TLocation : Room
-        {
-            throw new NotImplementedException();
-        }
+        public Task Enter<TLocation>(CancellationToken token) where TLocation : Room => _internalLocationSystem.Enter<TLocation>(token);
 
-        public void Enter(Type type)
-        {
-            throw new NotImplementedException();
-        }
+        public Task Enter(Type type, CancellationToken token) => _internalLocationSystem.Enter(type, token);
 
-        public Task Exit(CancellationToken token)
-        {
-            throw new NotImplementedException();
-        }
+        public void Enter<TLocation>() where TLocation : Room => _internalLocationSystem.Enter<TLocation>();
+
+        public void Enter(Type type) => _internalLocationSystem.Enter(type);
+
+        public Task Exit(CancellationToken token) => _internalLocationSystem.Exit(token);
+
+        #endregion
     }
 }

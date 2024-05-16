@@ -1,6 +1,4 @@
-using Workspace.Core.Common;
-
-namespace Workspace.Core.Systems.Room.Interior
+namespace Workspace.Core.Common.Data
 {
     public interface IContainerFiller<TContainer> where TContainer : IDataContainer
     {

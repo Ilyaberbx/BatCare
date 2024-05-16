@@ -9,9 +9,7 @@ namespace Workspace.Services.Location.Abstractions
         Task Enter<TLocation>(CancellationToken token) where TLocation : TDerivedLocation;
         Task Enter(Type type, CancellationToken token);
         void Enter<TLocation>() where TLocation : TDerivedLocation;
-
         void Enter(Type type);
-
         Task Exit(CancellationToken token);
     }
 }

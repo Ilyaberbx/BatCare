@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Workspace.Core.Common;
+using Workspace.Core.Common.Data;
 using Workspace.UI.Widgets.Abstractions;
 
 namespace Workspace.UI.Widgets
