@@ -84,8 +84,6 @@ MonoBehaviour:
   m_LabelTable:
     m_LabelNames:
     - default
-    - Lobby
-    - GamePlay
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: 70a80147cf3aaa94b9f16954438cdf91, type: 2}

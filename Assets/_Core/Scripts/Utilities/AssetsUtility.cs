@@ -11,7 +11,7 @@ namespace Workspace.Utilities
 {
     public static class AssetsUtility
     {
-        private static ServiceProperty<AssetsService> _assetsProperty;
+        private static readonly ServiceProperty<AssetsService> _assetsProperty = new();
         private static AssetsService Assets => _assetsProperty.CachedService;
 
         public static async Task<T> Create<T>(string address)

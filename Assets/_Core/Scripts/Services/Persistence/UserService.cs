@@ -10,12 +10,12 @@ namespace Workspace.Services.Persistence
     {
         private const string RealtimeLastSessionKey = "Real Time Last Session";
         private const string GametimeLastSessionKey = "Game Time Last Session";
-        private const string CurrentLocationKey = "Current Locatio nData";
+        private const string CurrentLocationKey = "Current Location Data";
+        private const string WallpapersKey = "Wallpapers Data";
         public SavesProperty<TimeData> RealLastSession { get; private set; }
         public SavesProperty<TimeData> GameLastSession { get; private set; }
         public SavesProperty<SettingsData> SettingsProperty { get; private set; }
         public SavesProperty<int> CurrentRoomIndexProperty { get; private set; }
-
         public SavesProperty<WallpapersData> WallpapersProperty { get; private set; }
         
         protected override Task OnInitializeAsync(CancellationToken cancellationToken)
@@ -24,6 +24,7 @@ namespace Workspace.Services.Persistence
             GameLastSession = new(GametimeLastSessionKey, new TimeData());
             CurrentRoomIndexProperty = new(CurrentLocationKey, 0);
             SettingsProperty = new(nameof(SettingsData), Settings.Settings);
+            WallpapersProperty = new(WallpapersKey, new WallpapersData());
 
             return Task.CompletedTask;
         }

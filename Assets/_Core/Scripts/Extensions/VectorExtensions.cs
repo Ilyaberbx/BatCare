@@ -18,5 +18,20 @@ namespace Workspace.Extensions
         {
             return new Vector3(source.x, source.y, source.z + value);
         }
+        
+        public static Vector3 MultiplyX(this Vector3 source, float value)
+        {
+            return new Vector3(source.x * value, source.y, source.z);
+        }
+
+        public static Vector3 MultiplyY(this Vector3 source, float value)
+        {
+            return new Vector3(source.x, source.y * value, source.z);
+        }
+
+        public static Vector3 MultiplyZ(this Vector3 source, float value)
+        {
+            return new Vector3(source.x, source.y, source.z * value);
+        }
     }
 }

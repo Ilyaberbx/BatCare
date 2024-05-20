@@ -17,13 +17,13 @@
       "url": "https://package.openupm.com"
     },
     "com.tdw.better.locators": {
-      "version": "0.1.3",
+      "version": "0.1.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {
         "com.tdw.better.internal.core": "0.0.2",
         "com.tdw.better.commons": "0.0.4",
-        "com.uurha.betterattributes": "3.1.1"
+        "com.uurha.betterattributes": "3.1.3"
       },
       "url": "https://package.openupm.com"
     },
@@ -240,7 +240,7 @@
       }
     },
     "com.unity.ide.rider": {
-      "version": "3.0.26",
+      "version": "3.0.28",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -367,8 +367,8 @@
       "url": "https://packages.unity.com"
     },
     "com.uurha.betterattributes": {
-      "version": "3.1.2",
-      "depth": 0,
+      "version": "3.1.3",
+      "depth": 1,
       "source": "registry",
       "dependencies": {
         "com.tdw.better.commons": "0.0.4",

@@ -1,13 +1,18 @@
 using System.Threading;
+using Better.SceneManagement.Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Workspace.Utilities;
+using SceneManager = UnityEngine.SceneManagement.SceneManager;
 
 namespace Workspace
 {
     public class ApplicationBootstapper : MonoBehaviour
     {
         private const string CoreScene = "Core";
-        
+
+        [SerializeField] private SceneReference _gamePlayReference;
+
         private CancellationTokenSource _tokenSource;
 
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
@@ -27,7 +32,12 @@ namespace Workspace
 
         private async void Start()
         {
-            
+            var sceneService = await ServiceLocatorUtility.WaitForService<SceneService>(_tokenSource.Token);
+
+            await sceneService
+                .CreateAdditiveTransition()
+                .LoadScene(_gamePlayReference)
+                .RunAsync();
         }
 
         private void OnDestroy()

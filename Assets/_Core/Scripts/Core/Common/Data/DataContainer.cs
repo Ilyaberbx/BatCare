@@ -19,7 +19,12 @@ namespace Workspace.Core.Common.Data
 
         public void Add<TElement, TData>(TData data) where TElement : TDerivedElement
         {
-            DataMap.Add(typeof(TElement), data);
+            Add(typeof(TElement), data);
+        }
+        
+        public void Add<TData>(Type type, TData data)
+        {
+            DataMap.Add(type, data);
         }
 
         public bool TryGetData(Type type, out object data)
