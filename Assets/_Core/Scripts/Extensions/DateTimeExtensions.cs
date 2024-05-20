@@ -18,18 +18,5 @@ namespace Workspace.Extensions
 
             return DateTime.Parse($"{date} {time}");
         }
-
-        public static TimeData ToData(this DateTime dateTime)
-        {
-            return new TimeData()
-            {
-                Value = dateTime.ToString()
-            };
-        }
-        
-        public static DateTime ToDateTime(this TimeData data)
-        {
-            return DateTime.Parse(data.Value);
-        }
     }
 }

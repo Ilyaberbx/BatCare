@@ -1,4 +1,4 @@
-namespace Workspace.Editor
+namespace Workspace._Core.Scripts.Editor
 {
     public class EditorPaths
     {

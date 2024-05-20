@@ -1,4 +1,5 @@
 using UnityEditor;
+using Workspace._Core.Scripts.Editor;
 
 namespace Workspace.Editor.Progress
 {
