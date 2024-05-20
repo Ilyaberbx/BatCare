@@ -1,5 +1,4 @@
 using System;
-using Better.Commons.Runtime.Utility;
 using UnityEngine;
 
 namespace Workspace.Core.MVP.Abstractions
@@ -10,7 +9,7 @@ namespace Workspace.Core.MVP.Abstractions
         protected BaseView DerivedView { get; private set; }
         protected IModel DerivedModel { get; private set; }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             DerivedView = GetView();
         }

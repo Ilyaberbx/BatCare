@@ -23,13 +23,13 @@ namespace Workspace.Core.MVP.Abstractions
         public bool Interactable
         {
             get => CanvasGroup.interactable;
-            set { CanvasGroup.interactable = value; }
+            set => CanvasGroup.interactable = value;
         }
         
         public bool BlocksRayCasts
         {
             get => CanvasGroup.blocksRaycasts;
-            set { CanvasGroup.blocksRaycasts = value; }
+            set => CanvasGroup.blocksRaycasts = value;
         }
     }
 }

@@ -3,7 +3,7 @@ using Better.Commons.Runtime.Extensions;
 
 namespace Workspace.Services.Pause
 {
-    internal class PauseSystem : IPauseSystem
+    public class PauseSystem : IPauseSystem
     {
         private readonly List<IPauseListener> _pauseListeners;
         public bool IsPaused { get; private set; }
