@@ -2,10 +2,10 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Better.Commons.Runtime.Extensions;
+using Better.Locators.Runtime;
 using Better.Locators.Runtime.Installers;
 using UnityEngine;
 using Workspace.Services.Assets;
-using Workspace.Utilities;
 
 namespace Workspace.Installers
 {
@@ -17,7 +17,7 @@ namespace Workspace.Installers
 
         public override async Task InstallBindingsAsync(CancellationToken cancellationToken)
         {
-            _assets = await ServiceLocatorUtility.WaitForService<AssetsService>(cancellationToken);
+            _assets = await ServiceLocator.GetAsync<AssetsService>(cancellationToken);
             await _assets.WarmUpAssetsByLabel(_label);
         }
 

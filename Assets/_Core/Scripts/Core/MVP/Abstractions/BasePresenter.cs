@@ -14,16 +14,16 @@ namespace Workspace.Core.MVP.Abstractions
             DerivedView = GetView();
         }
 
+        protected virtual BaseView GetView()
+        {
+            return GetComponent<BaseView>();
+        }
+
         public abstract void Rebuild();
 
         public virtual void SetDerivedModel(IModel value)
         {
             DerivedModel = value;
-        }
-
-        protected virtual BaseView GetView()
-        {
-            return GetComponent<BaseView>();
         }
     }
 

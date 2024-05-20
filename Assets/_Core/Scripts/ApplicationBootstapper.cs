@@ -1,4 +1,5 @@
 using System.Threading;
+using Better.Locators.Runtime;
 using Better.SceneManagement.Runtime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -32,7 +33,7 @@ namespace Workspace
 
         private async void Start()
         {
-            var sceneService = await ServiceLocatorUtility.WaitForService<SceneService>(_tokenSource.Token);
+            var sceneService = await ServiceLocator.GetAsync<SceneService>(_tokenSource.Token);
 
             await sceneService
                 .CreateAdditiveTransition()

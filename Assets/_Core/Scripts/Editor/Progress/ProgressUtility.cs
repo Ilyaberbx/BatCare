@@ -1,7 +1,6 @@
 using System.Diagnostics;
 using System.IO;
 using Better.Saves.Runtime.Settings;
-using UnityEngine;
 using Debug = UnityEngine.Debug;
 
 namespace Workspace.Editor.Progress
